@@ -1,0 +1,172 @@
+     #pwease
+    {
+        text-align:center;
+    }
+
+    #stopitdaddy
+    {
+        text-align:center;        
+    }
+    #wompwomp 
+    {
+        text-align: justify;
+        margin-left: 3px;
+    }
+    #skib 
+    {
+        text-align: center;
+        margin-left:500px;
+        margin-right:500px;
+    }
+
+    .link-btn 
+    {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 10px;
+      background-color: #5E8B7E;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .link-btn:hover
+    {
+      background-color: #388E3C;
+    }
+
+    .body 
+    {
+      height: 100vh;     
+      background-color: #FFF8E1; 
+    }
+
+    .raszionymanafeet
+    {
+        background:#2F5D62;padding:10px;
+    }
+    .a 
+    {
+        color:white;margin:0 15px;text-decoration:none;
+    }
+
+    img 
+    {
+        width: 500px;
+        height: auto;
+        display: block;   
+        margin: 0 auto;  
+    }
+
+    button 
+    {
+        background:#009e0b;color:white;padding:200px 200px;border:none;border-radius:8px;cursor:pointer;
+        
+    }
+
+    p
+    {
+        text-align: center;
+    }
+   
+    #nh 
+    {
+         width: 488px;
+         height: auto;
+         display: block;
+         margin-left: 0px;
+         margin-left: 0px;
+         float: left;
+         margin-right: 40px; 
+         
+    }
+   
+    .head{
+    background-color: #1B5E20;
+    padding: 10px 0;        
+    text-align: center;
+    }
+     h2
+    {
+        font-size: 40px;
+    text-align: center;
+    }
+    #redtext{
+     text-align: center;
+    color: rgb(255, 0, 0);
+    }
+    .famine{
+        font-size: medium;
+    }
+
+    
+        .site-footer {
+    background: #1B5E20;
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.footer-nav a:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
+
+.footer-sprite {
+    width: 45px;
+    height: 45px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.footer-sprite-left {
+    background-image: url('sprite-left.png');
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+.footer-top {
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+}
+    
+   
