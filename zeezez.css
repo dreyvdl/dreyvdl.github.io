@@ -36,8 +36,12 @@
     .link-btn:hover
     {
       background-color: #388E3C;
+      transformation: scale(1.5); 
     }
-
+    .link-bth:active
+    {
+ transformation: rotate(360deg);
+    }
     .body 
     {
       height: 100vh;     
@@ -67,6 +71,10 @@
         
     }
 
+    button:hover {
+      background-color: #1B5E20;
+    }
+
     p
     {
         text-align: center;
@@ -83,9 +91,7 @@
          margin-right: 40px; 
          
     }
-    #nh:hover {
-     transform: scale(1.2);
-    }
+     
     .head{
     background-color: #1B5E20;
     padding: 10px 0;        
@@ -130,7 +136,7 @@
 }
 
 .footer-nav a:hover {
-    opacity: 1;
+    opacity: 2;
 }
 
 .footer-bottom {
@@ -173,3 +179,4 @@
     
 
    
+
