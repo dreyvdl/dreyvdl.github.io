@@ -19,7 +19,7 @@
         margin-right:500px;
     }
 
-    .link-btn 
+    #button1
     {
       display: inline-block;
       padding: 12px 24px;
@@ -33,16 +33,32 @@
       transition: background 0.3s;
     }
 
-    .link-btn:hover
+
+   #button1
+    {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 10px;
+      background-color: #008000;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    #button1:hover
     {
       background-color: #388E3C;
       transformation: scale(1.5); 
-      
     }
-    .link-bth:clicked
-    {  
-     background-color:#90ee90;
+
+     #button2:hover
+    {
+      background-color: #90ee90;
+      transformation: scale(1.6); 
     }
+    
     .body 
     {
       height: 100vh;     
@@ -175,6 +191,7 @@
 
 
    
+
 
 
 
