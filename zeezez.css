@@ -178,23 +178,10 @@
     text-decoration: none;
 }
 
-.icon {
-  width: 55px;       /* half-size */
-  height: 55px;
-  background-image: url("socmedsigns.png");
-  background-size: 330px 330px; /* scale down sprite sheet */
-  display: inline-block;
-  transition: transform .2s;
-}
 
-.icon:hover {
-  transform: scale(1.2);
-}
-
-.icon-instagram { background-position: 0 0; }
-    
 
    
+
 
 
 
