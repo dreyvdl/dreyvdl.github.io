@@ -37,9 +37,9 @@
     {
       background-color: #388E3C;
       transformation: scale(1.5); 
-      transformation: rotate(360deg);
+      
     }
-    .link-bth:active
+    .link-bth:clicked
     {  
      background-color:#90ee90;
     }
@@ -181,6 +181,7 @@
 
 
    
+
 
 
 
