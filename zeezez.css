@@ -66,11 +66,8 @@
         margin: 0 auto;  
     }
 
-    a
-    {
-        background:#009e0b;color:white;padding:200px 200px;border:none;border-radius:8px;cursor:pointer;
-        
-    }
+    
+  
 
     button:hover {
       background-color: #1B5E20;
@@ -181,6 +178,7 @@
 
 
    
+
 
 
 
