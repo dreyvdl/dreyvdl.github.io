@@ -19,7 +19,7 @@
         margin-right:500px;
     }
 
-    #button1
+    .link-btn
     {
       display: inline-block;
       padding: 12px 24px;
@@ -34,19 +34,8 @@
     }
 
 
-   #button2
-    {
-      display: inline-block;
-      padding: 12px 24px;
-      margin: 10px;
-      background-color: #008000;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
+   
+    
     #button1:hover
     {
       background-color: #388E3C;
@@ -199,6 +188,7 @@
 
 
    
+
 
 
 
