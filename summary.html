@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Summary</title>
+  <style>
+    body { font-family: Arial; background-color: #f4f4f4; }
+    .container {
+      width: 500px; margin: auto; background: white;
+      padding: 30px; border-radius: 10px;
+      margin-top: 50px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 { color: #000000; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    td { padding: 10px; border-bottom: 1px solid #000000; }
+    td:first-child { font-weight: bold; width: 45%; }
+    .total { font-size: 1.1em; color: #000000; }
+    .thankyou {
+      margin-top: 20px; padding: 15px;
+      background-color: #e8f5e9; border-radius: 8px;
+      text-align: center; color: #000000;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Order Summary</h2>
+  <!-- Populated dynamically by displaySummary() -->
+  <table id="summaryTable"></table>
+  <div class="thankyou" id="thankYou"></div>
+</div>
+
+<script>
+  /* Retrieves cookie by name */
+  function getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (let c of cookies) {
+      const [key, val] = c.split("=");
+      if (key === name) return decodeURIComponent(val);
+    }
+    return null;
+  }
+
+  function displaySummary() {
+    /* Read order data from storage */
+    const name     = getCookie("customerName") || "";
+    const variant  = localStorage.getItem("variant")  || "";
+    const quantity = parseInt(localStorage.getItem("quantity")) || 0;
+    const pickup   = localStorage.getItem("pickup")   || "N/A";
+    const address  = localStorage.getItem("address")  || "";
+
+    /* parse product name and price */
+    let productName = "N/A", price = 0;
+    if (variant) {
+      const parts = variant.split("|");
+      productName = "UV Patch " + parts[0];
+      price = parseFloat(parts[1]) || 0;
+    }
+
+    /* calculate total cost */
+    const total = price * quantity;
+
+    let rows = `
+      <tr><td>Customer Name</td><td>${name}</td></tr>
+      <tr><td>Product</td><td>${productName}</td></tr>
+      <tr><td>Quantity</td><td>${quantity}</td></tr>
+      <tr><td class="total">Total Amount</td><td class="total">PHP ${total.toFixed(2)}</td></tr>
+      <tr><td>Pickup Method</td><td>${pickup}</td></tr>
+    `;
+
+    /* show address row only for delivery */
+    if (pickup === "Delivery") {
+      rows += `<tr><td>Address</td><td>${address || "N/A"}</td></tr>`;
+    }
+
+    document.getElementById("summaryTable").innerHTML = rows;
+    document.getElementById("thankYou").innerHTML =
+      `<strong>Thank you</strong><br>Your preorder has been received.`;
+  }
+
+  displaySummary();
+</script>
+</body>
+</html>
