@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pre-Order Form</title>
+  <style>
+    body { font-family: Arial; background-color: #f4f4f4; }
+    .container {
+      width: 500px; margin: auto; background: white;
+      padding: 20px; border-radius: 10px;
+      margin-top: 50px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select { width: 95%; padding: 8px; margin: 8px 0; }
+    #terms { width: 10%; }
+    button {
+      padding: 10px; width: 100%; margin-top: 5px;
+      background-color: #4CAF50; color: white;
+      border: none; cursor: pointer;
+    }
+    button:hover { background-color: #45a049; }
+    .error { color: red; margin-bottom: 10px; min-height: 18px; }
+    #addressGroup { display: none; } /* Hidden until delivery selected */
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>UV-Alert Pre-Order</h2>
+  
+  <p>
+    descriptsyon
+  </p>
+
+  <!-- displays validation error messages -->
+  <div id="errorMsg" class="error"></div>
+
+  <form onsubmit="return handleOrder()">
+    <label>Customer Name:</label>
+    <input type="text" id="name">
+
+    <label>Product:</label>
+    <!-- value format: size|price -->
+    <select id="variant">
+      <option value="">Select</option>
+      <option value="5x5cm|5">5x5cm (PHP 5)</option>
+      <option value="10x10cm|10">10x10cm (PHP 10)</option>
+    </select>
+
+    <label>Quantity:</label>
+    <input type="number" id="quantity">
+
+    <label>Pickup Method:</label>
+    <!-- triggers address field toggle -->
+    <select id="pickup" onchange="toggleAddress()">
+      <option value="">Select</option>
+      <option value="Delivery">Delivery</option>
+      <option value="Meetup">Meetup</option>
+    </select>
+
+    <!-- shown only for delivery -->
+    <div id="addressGroup">
+      <label>Address (for delivery only):</label>
+      <input type="text" id="address">
+    </div>
+
+    <label>
+      <input type="checkbox" id="terms"> I accept terms and conditions
+    </label>
+    <br><br>
+
+    <button type="button" onclick="loadPreviousOrder()">Load Previous Order</button>
+    <button type="submit">Submit Order</button>
+  </form>
+</div>
+
+<script>
+  
+  /* shows/hides address field */
+  function toggleAddress() {
+    const pickup = document.getElementById("pickup").value;
+    document.getElementById("addressGroup").style.display =
+      pickup === "Delivery" ? "block" : "none";
+  }
+
+
+  /* saves cookie with expiry */
+  function setCookie(name, value, maxAge) {
+    document.cookie = `${name}=${encodeURIComponent(value)}; max-age=${maxAge}; path=/`;
+  }
+
+  /* retrieves cookie by name */
+  function getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (let c of cookies) {
+      const [key, val] = c.split("=");
+      if (key === name) return decodeURIComponent(val);
+    }
+    return null;
+  }
+
+  function deleteCookie(name) {
+    document.cookie = `${name}=; max-age=0; path=/`;
+  }
+
+ 
+  /* returns array of error messages */
+  function validateForm(name, variant, quantity, pickup, address, terms) {
+    const emptyFields = [];
+    if (!name)     emptyFields.push("customer name");
+    if (!variant)  emptyFields.push("product");
+    if (!quantity) emptyFields.push("quantity");
+    if (!pickup)   emptyFields.push("pickup method");
+    if (pickup === "Delivery" && !address) emptyFields.push("address");
+
+    const errors = [];
+
+    if (emptyFields.length > 0)
+      errors.push("The following fields cannot be empty: " + emptyFields.join(", "));
+    if (quantity !== "" && Number(quantity) <= 0)
+      errors.push("Quantity must be greater than 0.");
+    if (!terms)
+      errors.push("You must accept the terms and conditions.");
+
+    return errors;
+  }
+
+
+  /* validates, saves data, redirects */
+  function handleOrder() {
+    document.getElementById("errorMsg").innerHTML = "";
+
+    const name     = document.getElementById("name").value.trim();
+    const variant  = document.getElementById("variant").value;
+    const quantity = document.getElementById("quantity").value.trim();
+    const pickup   = document.getElementById("pickup").value;
+    const address  = document.getElementById("address").value.trim();
+    const terms    = document.getElementById("terms").checked;
+
+    const errors = validateForm(name, variant, quantity, pickup, address, terms);
+
+    if (errors.length > 0) {
+      document.getElementById("errorMsg").innerHTML = errors.join("<br>");
+      return false;
+    }
+
+    /* name stored in cookie (7 days) */
+    setCookie("customerName", name, 60 * 60 * 24 * 7);
+
+    /* order details stored in localStorage */
+    localStorage.setItem("variant",  variant);
+    localStorage.setItem("quantity", quantity);
+    localStorage.setItem("pickup",   pickup);
+    localStorage.setItem("address",  address);
+
+    window.location.href = "summary.html";
+    return false;
+  }
+
+  
+  /* fills form from saved data */
+  function loadPreviousOrder() {
+    const name     = getCookie("customerName");
+    const variant  = localStorage.getItem("variant");
+    const quantity = localStorage.getItem("quantity");
+    const pickup   = localStorage.getItem("pickup");
+    const address  = localStorage.getItem("address");
+
+    if (!name && !variant) {
+      document.getElementById("errorMsg").innerHTML = "No previous order data.";
+      return;
+    }
+
+    if (name)     document.getElementById("name").value     = name;
+    if (variant)  document.getElementById("variant").value  = variant;
+    if (quantity) document.getElementById("quantity").value = quantity;
+    if (pickup) {
+      document.getElementById("pickup").value = pickup;
+      toggleAddress();
+    }
+    if (address)  document.getElementById("address").value  = address;
+  }
+</script>
+</body>
+</html>
